@@ -18,7 +18,7 @@ public class Labs456 {
      */
     public static void main(String[] args) {
         for(int i = 0; i<5; i++){
-            System.out.print("FUCK YOU ALL!!!");
+            System.out.println("FUCK YOU ALL!!!");
         }
         // TODO code application logic here
     }
