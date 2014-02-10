@@ -17,7 +17,9 @@ public class Labs456 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.print("FUCK YOU ALL!!!");
+        for(int i = 0; i<5; i++){
+            System.out.print("FUCK YOU ALL!!!");
+        }
         // TODO code application logic here
     }
     
