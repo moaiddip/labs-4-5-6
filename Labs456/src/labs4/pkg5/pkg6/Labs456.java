@@ -18,9 +18,13 @@ import java.util.logging.Logger;
  * @author moaiddip
  */
 public class Labs456 {
-
-    public void login(javax.swing.JTextField username, javax.swing.JPasswordField password)throws Exception {
-        System.out.println("JESTEM TU!");
+    private boolean loggedIn = false;
+    private String userName = null;
+    Gui gui = new Gui();
+    public void login(javax.swing.JTextField username, javax.swing.JPasswordField password) {
+        
+        try{
+        
         String name = null;
         String URL = "jdbc:mysql://127.0.0.1:3306/lab-4-5-6_university_database?user=root&password=pwnage12";
 
@@ -32,13 +36,26 @@ public class Labs456 {
         //ResultSet rs = st.executeQuery("SELECT * FROM students");
        
 
-        while (rs.next()){
+        while(rs.next()){
             name = rs.getString("Name");
         }
-        System.out.println(name);
-        /**
-         * @param args the command line arguments
-         */
+        if (!name.equals(null)){
+            loggedIn=true;
+            userName = name;
+            
+        }
+        }
+        catch(Exception ex){
+            
+        }
 
+    }
+
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }
