@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package labs4.pkg5.pkg6;
 
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 
 /**
@@ -37,6 +38,7 @@ public class Gui extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,6 +61,13 @@ public class Gui extends javax.swing.JFrame {
 
         jLabel3.setText("Don't have a password yet? Click here to go fuck yourself.");
 
+        jButton2.setText("Terminate");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,7 +87,9 @@ public class Gui extends javax.swing.JFrame {
                             .addComponent(jTextField1))
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)
-                        .addGap(123, 123, 123))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addGap(44, 44, 44))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,7 +103,8 @@ public class Gui extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(33, 33, 33))
@@ -108,14 +120,31 @@ public class Gui extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Labs456 lab = new Labs456();
         //Added an action listener to the button
-        
+
         JButton button = (JButton) evt.getSource();
-        if (button.equals(jButton1)){
-            System.out.println("Hello");
+        if (button.equals(jButton1)) {
+
             lab.login(jTextField1, jPasswordField1);
-            
+
+        }
+        if (lab.isLoggedIn() == true) {
+           
+            jLabel3.setText("Logged in as " + lab.getUserName() + "!");
+        }
+        else {
+            setLabel();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        JButton button = (JButton) evt.getSource();
+        if (button.equals(jButton2)) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+    public void setLabel() {
+        jLabel3.setText("Incorrect login details! :(");
+    }
 
     /**
      * @param args the command line arguments
@@ -154,6 +183,7 @@ public class Gui extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
