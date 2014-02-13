@@ -6,6 +6,9 @@
 
 package labs4.pkg5.pkg6;
 
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+
 /**
  *
  * @author Sozos
@@ -48,6 +51,11 @@ public class Gui extends javax.swing.JFrame {
         jLabel2.setText("Username:");
 
         jButton1.setText("Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Don't have a password yet? Click here to go fuck yourself.");
 
@@ -96,6 +104,16 @@ public class Gui extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Labs456 lab = new Labs456();
+        
+        jButton1.addActionListener((ActionListener) this);
+        JButton button = (JButton) evt.getSource();
+        if (button.equals(jButton1)){
+            lab.login(jTextField1, jPasswordField1);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
