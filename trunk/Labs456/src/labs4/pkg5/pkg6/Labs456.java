@@ -19,30 +19,22 @@ import java.util.logging.Logger;
  * @author moaiddip
  */
 public class Labs456 {
-    public void login(javax.swing.JTextField username, javax.swing.JPasswordField password){
+    public void login(javax.swing.JTextField username, javax.swing.JPasswordField password) throws Exception{
         System.out.println("JESTEM TU!");
-        try {
-            String URL = "jdbc:mysql://127.0.0.1:3306/lab-4-5-6_university_database?user=test&password=test";
+        String URL = "jdbc:mysql://127.0.0.1:3306/lab-4-5-6_university_database?user=test&password=test";
             
             Connection c = DriverManager.getConnection(URL);
             Statement st = c.createStatement();
+//            ResultSet rs = st.executeQuery("SELECT Name FROM students"
+//                    + "WHERE Login like " +username+ " AND Password like "+password);
             ResultSet rs = st.executeQuery("SELECT * FROM students");
        
 
-    while(rs.next () 
-        ){
-                int nbr = rs.getInt("StudentId");
-        String name = rs.getString("Name");
-        System.out.println("Student Name: " + name + " \nand student number " + nbr + "\n\n");
-    }
-
-    c.close ();
-     } catch (SQLException ex) {
-            Logger.getLogger(Labs456.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+            String a = rs.getString("Name");
+        System.out.println("Student Name: " +a);
     /**
      * @param args the command line arguments
      */
     
+}
 }
