@@ -107,11 +107,13 @@ public class Gui extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Labs456 lab = new Labs456();
+        //Added an action listener to the button
         
-        jButton1.addActionListener((ActionListener) this);
         JButton button = (JButton) evt.getSource();
         if (button.equals(jButton1)){
+            System.out.println("Hello");
             lab.login(jTextField1, jPasswordField1);
+            
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
