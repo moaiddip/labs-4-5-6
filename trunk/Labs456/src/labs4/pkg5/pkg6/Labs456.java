@@ -11,7 +11,9 @@ package labs4.pkg5.pkg6;
  * @author moaiddip
  */
 public class Labs456 {
-
+    public void login(javax.swing.JTextField username, javax.swing.JPasswordField password){
+        
+    }
     /**
      * @param args the command line arguments
      */
