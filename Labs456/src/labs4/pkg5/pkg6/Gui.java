@@ -59,7 +59,7 @@ public class Gui extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Don't have a password yet? Click here to go fuck yourself.");
+        jLabel3.setText("Don't have a password yet? Contact the administration at 1-800-123 .");
 
         jButton2.setText("Terminate");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +80,7 @@ public class Gui extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
-                        .addContainerGap(62, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPasswordField1)
@@ -128,8 +128,10 @@ public class Gui extends javax.swing.JFrame {
 
         }
         if (lab.isLoggedIn() == true) {
-           
-            jLabel3.setText("Logged in as " + lab.getUserName() + "!");
+            LoggedWindow window = new LoggedWindow();
+            window.setVisible(true);
+            setVisible(false);
+            window.initialize(lab.getUserName());
         }
         else {
             setLabel();
