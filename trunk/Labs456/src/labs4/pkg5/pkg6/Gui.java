@@ -6,6 +6,7 @@
 package labs4.pkg5.pkg6;
 
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -131,7 +132,11 @@ public class Gui extends javax.swing.JFrame {
             LoggedWindow window = new LoggedWindow();
             window.setVisible(true);
             setVisible(false);
-            window.initialize(lab.getUserName());
+            try {
+                window.initialize(lab.getUserName());
+            } catch (SQLException ex) {
+                Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else {
             setLabel();

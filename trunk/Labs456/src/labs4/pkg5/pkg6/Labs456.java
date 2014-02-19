@@ -10,8 +10,12 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.ListModel;
 
 /**
  *
@@ -20,32 +24,47 @@ import java.util.logging.Logger;
 public class Labs456 {
     private boolean loggedIn = false;
     private String userName = null;
+    
+    public ArrayList list;
     Gui gui = new Gui();
+    int id;
+    
+    String URL = "jdbc:mysql://127.0.0.1:3306/lab-4-5-6_university_database?user=new&password=new";
+    Connection c;
+    Statement st;
+
+
+
     public void login(javax.swing.JTextField username, javax.swing.JPasswordField password) {
         
         try{
         
         String name = null;
-        String URL = "jdbc:mysql://127.0.0.1:3306/lab-4-5-6_university_database?user=root&password=pwnage12";
+       
 
-        Connection c = DriverManager.getConnection(URL);
-        Statement st = c.createStatement();
+        this.st = c.createStatement();
+        this.c = DriverManager.getConnection(URL);
         String user = username.getText();
         String pass = password.getText();
-        ResultSet rs = st.executeQuery("SELECT Name FROM students WHERE (Login LIKE '"+user+"' AND Password LIKE '"+pass+"')");
+        ResultSet rs = st.executeQuery("SELECT studName FROM student WHERE (studLogin LIKE '"+user+"' AND studPass LIKE '"+pass+"')");
         //ResultSet rs = st.executeQuery("SELECT * FROM students");
        
 
-        while(rs.next()){
-            name = rs.getString("Name");
+        while(rs.next()){  
+            name = rs.getString("studName");
         }
         if (!name.equals(null)){
             loggedIn=true;
             userName = name;
+            ResultSet res = st.executeQuery("SELECT idstudent FROM student WHERE (studLogin LIKE '"+user+"' AND studPass LIKE '"+pass+"')");
+            while(res.next()){
+                id= res.getInt("idstudent");
+            }
             
         }
+        
         }
-        catch(Exception ex){
+        catch(SQLException ex){
             
         }
 
@@ -57,5 +76,18 @@ public class Labs456 {
 
     public String getUserName() {
         return userName;
+    }
+    public void getCourses(int id) throws SQLException{
+        
+        list = new ArrayList();
+        id=this.id;
+        this.st = c.createStatement();
+        this.c = DriverManager.getConnection(URL);
+        ResultSet cs = st.executeQuery("SELECT courseName FROM course JOIN studc ON (studc.CourseId=course.idcourse) WHERE (studc.studId="+id+")");
+        while(cs.next()){
+            list.add(cs.getString("courseName"));
+        }
+        
+        
     }
 }
